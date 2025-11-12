@@ -1,0 +1,86 @@
+{
+  "progress": {
+    "completedLessons": 0,
+    "totalLessons": 6,
+    "percentage": 0,
+    "completedLessonIds": []
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "name": "Introduction",
+      "description": "Introduction to API Documentation",
+      "completed": false,
+      "topics": [
+        "What is API Documentation",
+        "Why Documentation Matters",
+        "Course Overview"
+      ]
+    },
+    {
+      "id": "rest",
+      "name": "REST API Basics",
+      "description": "Learn the fundamentals of REST APIs",
+      "completed": false,
+      "topics": [
+        "HTTP Methods",
+        "Request/Response Formats",
+        "Status Codes",
+        "Authentication"
+      ]
+    },
+    {
+      "id": "openapi",
+      "name": "OpenAPI Specification",
+      "description": "Master OpenAPI for API documentation",
+      "completed": false,
+      "topics": [
+        "OpenAPI Structure",
+        "Paths and Operations",
+        "Schemas and Components",
+        "Tools and Validators"
+      ]
+    },
+    {
+      "id": "gitbook",
+      "name": "GitBook Documentation",
+      "description": "Create beautiful docs with GitBook",
+      "completed": false,
+      "topics": [
+        "GitBook Setup",
+        "Content Structure",
+        "Markdown Formatting",
+        "Publishing and Deployment"
+      ]
+    },
+    {
+      "id": "best-practices",
+      "name": "Best Practices",
+      "description": "Industry best practices for API docs",
+      "completed": false,
+      "topics": [
+        "Writing Guidelines",
+        "Code Examples",
+        "Error Documentation",
+        "Versioning Strategies"
+      ]
+    },
+    {
+      "id": "exercises",
+      "name": "Exercises",
+      "description": "Practice what you've learned",
+      "completed": false,
+      "topics": [
+        "Document an Endpoint",
+        "Write OpenAPI Spec",
+        "Create GitBook Structure"
+      ]
+    }
+  ],
+  "lastUpdated": "2025-11-12T08:53:48.424Z",
+  "metadata": {
+    "version": "1.0.0",
+    "courseTitle": "API Documentation Interactive Course",
+    "description": "A fully local, interactive HTML/CSS/JS website that teaches beginners how to write professional API documentation"
+  }
+}

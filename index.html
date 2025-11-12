@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation Interactive Course</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>📚 Course Menu</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active" data-section="intro">
+                        <span class="nav-icon">🎯</span>
+                        <span class="nav-text">Introduction</span>
+                    </li>
+                    <li class="nav-item" data-section="rest">
+                        <span class="nav-icon">🔄</span>
+                        <span class="nav-text">REST API Basics</span>
+                    </li>
+                    <li class="nav-item" data-section="openapi">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">OpenAPI Specification</span>
+                    </li>
+                    <li class="nav-item" data-section="gitbook">
+                        <span class="nav-icon">📖</span>
+                        <span class="nav-text">GitBook Documentation</span>
+                    </li>
+                    <li class="nav-item" data-section="best-practices">
+                        <span class="nav-icon">⭐</span>
+                        <span class="nav-text">Best Practices</span>
+                    </li>
+                    <li class="nav-item" data-section="exercises">
+                        <span class="nav-icon">✏️</span>
+                        <span class="nav-text">Exercises</span>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Progress Overview -->
+            <div class="progress-sidebar">
+                <h3>Your Progress</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="sidebarProgressBar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text" id="sidebarProgressText">0%</span>
+                </div>
+                <p class="progress-info">
+                    <span id="completedLessons">0</span> of <span id="totalLessons">6</span> lessons completed
+                </p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header with Progress -->
+            <header class="main-header">
+                <h1>API Documentation Interactive Course</h1>
+                <p class="subtitle">Learn to write professional API documentation from scratch</p>
+                
+                <div class="progress-header">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="headerProgressFill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text" id="headerProgressText">0%</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="learn">📖 Learn</button>
+                <button class="tab-button" data-tab="practice">✏️ Practice</button>
+                <button class="tab-button" data-tab="resources">📚 Resources</button>
+                <button class="tab-button" data-tab="quiz">🎯 Quiz</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Learn Tab -->
+                <div class="tab-pane active" id="learn-tab">
+                    <section class="content-section" id="content-intro">
+                        <h2>Introduction to API Documentation</h2>
+                        <p>Welcome to the API Documentation Interactive Course! This course will teach you how to create professional, user-friendly API documentation.</p>
+                        
+                        <div class="card">
+                            <h3>What You'll Learn</h3>
+                            <ul>
+                                <li>REST API fundamentals and documentation structure</li>
+                                <li>OpenAPI (Swagger) specification and tools</li>
+                                <li>GitBook for creating beautiful documentation sites</li>
+                                <li>Best practices for writing clear, helpful API docs</li>
+                                <li>Real-world examples and hands-on exercises</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>Prerequisites</h3>
+                            <ul>
+                                <li>Basic understanding of HTTP and web APIs</li>
+                                <li>Familiarity with JSON format</li>
+                                <li>Text editor for writing documentation</li>
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-primary mark-complete" data-lesson="intro">Mark as Complete</button>
+                    </section>
+
+                    <section class="content-section hidden" id="content-rest">
+                        <h2>REST API Basics</h2>
+                        <p>Learn the fundamentals of REST APIs and how to document them effectively.</p>
+                        
+                        <div class="card">
+                            <h3>HTTP Methods</h3>
+                            <ul>
+                                <li><strong>GET</strong> - Retrieve data from the server</li>
+                                <li><strong>POST</strong> - Create new resources</li>
+                                <li><strong>PUT</strong> - Update existing resources</li>
+                                <li><strong>PATCH</strong> - Partial updates to resources</li>
+                                <li><strong>DELETE</strong> - Remove resources</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>REST API Documentation Components</h3>
+                            <ul>
+                                <li>Endpoint URLs and paths</li>
+                                <li>Request/Response formats</li>
+                                <li>Authentication methods</li>
+                                <li>Error codes and messages</li>
+                                <li>Rate limiting information</li>
+                                <li>Code examples in multiple languages</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <h4>Example: GET Request Documentation</h4>
+                            <pre><code>GET /api/users/{id}
+
+Description: Retrieve a specific user by ID
+
+Parameters:
+  - id (path, required): The unique user identifier
+
+Response 200 (application/json):
+{
+  "id": "123",
+  "name": "John Doe",
+  "email": "john@example.com"
+}</code></pre>
+                        </div>
+
+                        <button class="btn btn-primary mark-complete" data-lesson="rest">Mark as Complete</button>
+                    </section>
+
+                    <section class="content-section hidden" id="content-openapi">
+                        <h2>OpenAPI Specification</h2>
+                        <p>OpenAPI (formerly Swagger) is a standard for describing REST APIs in a machine-readable format.</p>
+                        
+                        <div class="card">
+                            <h3>OpenAPI Benefits</h3>
+                            <ul>
+                                <li>Auto-generate interactive documentation</li>
+                                <li>Create client SDKs automatically</li>
+                                <li>API testing and validation</li>
+                                <li>Standardized format across teams</li>
+                                <li>Version control for API specifications</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <h4>Example: OpenAPI 3.0 Specification</h4>
+                            <pre><code>openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+  description: API for managing users
+
+paths:
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string</code></pre>
+                        </div>
+
+                        <button class="btn btn-primary mark-complete" data-lesson="openapi">Mark as Complete</button>
+                    </section>
+
+                    <section class="content-section hidden" id="content-gitbook">
+                        <h2>GitBook Documentation</h2>
+                        <p>GitBook is a modern documentation platform that makes it easy to create beautiful, searchable docs.</p>
+                        
+                        <div class="card">
+                            <h3>GitBook Features</h3>
+                            <ul>
+                                <li>Markdown-based content authoring</li>
+                                <li>Git integration for version control</li>
+                                <li>Beautiful, responsive themes</li>
+                                <li>Full-text search functionality</li>
+                                <li>Custom domain support</li>
+                                <li>Team collaboration tools</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>Setting Up GitBook</h3>
+                            <ol>
+                                <li>Create a new GitBook space</li>
+                                <li>Connect your GitHub repository</li>
+                                <li>Organize content with SUMMARY.md</li>
+                                <li>Write content in Markdown files</li>
+                                <li>Publish and share your documentation</li>
+                            </ol>
+                        </div>
+
+                        <div class="code-example">
+                            <h4>Example: SUMMARY.md Structure</h4>
+                            <pre><code># Summary
+
+* [Introduction](README.md)
+* [Getting Started](getting-started.md)
+  * [Installation](getting-started/installation.md)
+  * [Quick Start](getting-started/quick-start.md)
+* [API Reference](api-reference.md)
+  * [Authentication](api-reference/authentication.md)
+  * [Endpoints](api-reference/endpoints.md)
+* [Examples](examples.md)</code></pre>
+                        </div>
+
+                        <button class="btn btn-primary mark-complete" data-lesson="gitbook">Mark as Complete</button>
+                    </section>
+
+                    <section class="content-section hidden" id="content-best-practices">
+                        <h2>Best Practices for API Documentation</h2>
+                        <p>Learn industry best practices for creating excellent API documentation.</p>
+                        
+                        <div class="card">
+                            <h3>Writing Guidelines</h3>
+                            <ul>
+                                <li><strong>Be Clear and Concise:</strong> Use simple language and avoid jargon</li>
+                                <li><strong>Provide Examples:</strong> Include real-world code samples</li>
+                                <li><strong>Keep It Updated:</strong> Maintain documentation alongside code changes</li>
+                                <li><strong>Show Error Cases:</strong> Document error responses and edge cases</li>
+                                <li><strong>Include Getting Started:</strong> Help users quickly get up and running</li>
+                                <li><strong>Use Consistent Formatting:</strong> Maintain a uniform style throughout</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>Essential Documentation Sections</h3>
+                            <ul>
+                                <li>Overview and Introduction</li>
+                                <li>Authentication Guide</li>
+                                <li>API Reference (endpoints, parameters, responses)</li>
+                                <li>Code Examples (multiple languages)</li>
+                                <li>Error Handling</li>
+                                <li>Rate Limiting and Quotas</li>
+                                <li>Changelog and Versioning</li>
+                                <li>FAQ and Troubleshooting</li>
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-primary mark-complete" data-lesson="best-practices">Mark as Complete</button>
+                    </section>
+
+                    <section class="content-section hidden" id="content-exercises">
+                        <h2>Practice Exercises</h2>
+                        <p>Apply what you've learned with these hands-on exercises.</p>
+                        
+                        <div class="card">
+                            <h3>Exercise 1: Document a Simple Endpoint</h3>
+                            <p>Create documentation for a GET endpoint that retrieves a list of products. Include:</p>
+                            <ul>
+                                <li>Endpoint URL</li>
+                                <li>Query parameters (optional: category, limit, offset)</li>
+                                <li>Response format with example</li>
+                                <li>Possible error codes</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>Exercise 2: Write an OpenAPI Spec</h3>
+                            <p>Create an OpenAPI 3.0 specification for a blog API with:</p>
+                            <ul>
+                                <li>Endpoints for posts (CRUD operations)</li>
+                                <li>Authentication using API keys</li>
+                                <li>Schema definitions for Post object</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>Exercise 3: GitBook Structure</h3>
+                            <p>Design a GitBook documentation structure for an e-commerce API including:</p>
+                            <ul>
+                                <li>Navigation hierarchy</li>
+                                <li>Table of contents (SUMMARY.md)</li>
+                                <li>At least 5 main sections</li>
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-primary mark-complete" data-lesson="exercises">Mark as Complete</button>
+                    </section>
+                </div>
+
+                <!-- Practice Tab -->
+                <div class="tab-pane" id="practice-tab">
+                    <h2>Practice Area</h2>
+                    <p>This section will contain interactive exercises and hands-on practice.</p>
+                    
+                    <div class="card">
+                        <h3>Coming Soon</h3>
+                        <p>Interactive coding exercises and API documentation challenges will be available here.</p>
+                        <ul>
+                            <li>Live API documentation editor</li>
+                            <li>OpenAPI validator</li>
+                            <li>Documentation templates</li>
+                            <li>Real-time feedback on your work</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Resources Tab -->
+                <div class="tab-pane" id="resources-tab">
+                    <h2>Additional Resources</h2>
+                    <p>Helpful links and tools for API documentation.</p>
+                    
+                    <div class="card">
+                        <h3>📖 Documentation Tools</h3>
+                        <ul>
+                            <li><a href="https://swagger.io/" target="_blank">Swagger / OpenAPI</a> - API specification and documentation</li>
+                            <li><a href="https://www.gitbook.com/" target="_blank">GitBook</a> - Modern documentation platform</li>
+                            <li><a href="https://stoplight.io/" target="_blank">Stoplight</a> - API design and documentation</li>
+                            <li><a href="https://readme.com/" target="_blank">ReadMe</a> - Interactive API documentation</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>📚 Learning Resources</h3>
+                        <ul>
+                            <li><a href="https://restfulapi.net/" target="_blank">RESTful API Tutorial</a></li>
+                            <li><a href="https://spec.openapis.org/" target="_blank">OpenAPI Specification</a></li>
+                            <li><a href="https://idratherbewriting.com/" target="_blank">I'd Rather Be Writing</a> - Technical writing blog</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>🛠️ Developer Tools</h3>
+                        <ul>
+                            <li><a href="https://www.postman.com/" target="_blank">Postman</a> - API testing and documentation</li>
+                            <li><a href="https://insomnia.rest/" target="_blank">Insomnia</a> - API client and testing</li>
+                            <li><a href="https://httpie.io/" target="_blank">HTTPie</a> - Command-line HTTP client</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Quiz Tab -->
+                <div class="tab-pane" id="quiz-tab">
+                    <h2>Knowledge Check</h2>
+                    <p>Test your understanding of API documentation concepts.</p>
+                    
+                    <div class="card">
+                        <h3>Quiz Coming Soon</h3>
+                        <p>Interactive quizzes will help reinforce your learning:</p>
+                        <ul>
+                            <li>Multiple choice questions</li>
+                            <li>True/false scenarios</li>
+                            <li>Code snippet analysis</li>
+                            <li>Instant feedback on answers</li>
+                            <li>Score tracking and certificates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
