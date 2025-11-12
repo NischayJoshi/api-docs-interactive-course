@@ -45,23 +45,7 @@
 
             <!-- Progress Overview -->
             <div class="progress-sidebar">
-                <div class="progress-sidebar-header">
-                    <h3>Your Progress</h3>
-                    <div class="progress-menu">
-                        <button class="progress-menu-btn" id="progressMenuBtn" aria-label="Progress options">⋮</button>
-                        <div class="progress-menu-dropdown" id="progressMenuDropdown">
-                            <button class="progress-menu-item" id="exportProgressBtn">
-                                <span class="menu-icon">📤</span> Export Progress
-                            </button>
-                            <button class="progress-menu-item" id="importProgressBtn">
-                                <span class="menu-icon">📥</span> Import Progress
-                            </button>
-                            <button class="progress-menu-item progress-menu-danger" id="resetProgressBtn">
-                                <span class="menu-icon">🔄</span> Reset Progress
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <h3>Your Progress</h3>
                 <div class="progress-bar-container">
                     <div class="progress-bar">
                         <div class="progress-fill" id="sidebarProgressFill"></div>
@@ -71,6 +55,11 @@
                 <p class="progress-info">
                     <span id="completedLessons">0</span> of <span id="totalLessons">0</span> completed
                 </p>
+                <div class="progress-actions-inline">
+                    <button class="btn-inline" id="exportProgressBtn" title="Export Progress">📤</button>
+                    <button class="btn-inline" id="importProgressBtn" title="Import Progress">📥</button>
+                    <button class="btn-inline btn-inline-danger" id="resetProgressBtn" title="Reset Progress">🔄</button>
+                </div>
             </div>
         </aside>
 
