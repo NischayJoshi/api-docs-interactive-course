@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive API Documentation Crash Course - Master API docs writing with hands-on lessons, quizzes, and examples">
+    <meta name="description"
+        content="Interactive API Documentation Crash Course - Master API docs writing with hands-on lessons, quizzes, and examples">
     <title>API Docs Interactive Course — VideoDB Edition</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
@@ -28,13 +31,8 @@
 
             <!-- Search Bar -->
             <div class="search-container">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    class="search-input" 
-                    placeholder="Search lessons... (Press /)"
-                    aria-label="Search lessons"
-                />
+                <input type="text" id="searchInput" class="search-input" placeholder="Search lessons... (Press /)"
+                    aria-label="Search lessons" />
                 <span class="search-icon">🔍</span>
             </div>
 
@@ -58,7 +56,8 @@
                 <div class="progress-actions-inline">
                     <button class="btn-inline" id="exportProgressBtn" title="Export Progress">📤</button>
                     <button class="btn-inline" id="importProgressBtn" title="Import Progress">📥</button>
-                    <button class="btn-inline btn-inline-danger" id="resetProgressBtn" title="Reset Progress">🔄</button>
+                    <button class="btn-inline btn-inline-danger" id="resetProgressBtn"
+                        title="Reset Progress">🔄</button>
                 </div>
             </div>
         </aside>
@@ -72,7 +71,7 @@
                 </div>
                 <h1 id="lessonTitle">API Docs Interactive Crash Course</h1>
                 <p class="subtitle" id="lessonSubtitle">Master API documentation writing with interactive lessons</p>
-                
+
                 <!-- Top Progress Bar -->
                 <div class="progress-header">
                     <div class="progress-bar-container">
@@ -111,19 +110,101 @@
                     <div id="lessonContent">
                         <div class="welcome-screen">
                             <h2>🎓 Welcome to the API Documentation Crash Course!</h2>
-                            <p>This interactive course will transform you into a professional API documentation writer.</p>
-                            
+                            <p>This interactive course will transform you into a professional API documentation writer.
+                            </p>
+
                             <div class="card">
                                 <h3>What You'll Learn</h3>
-                                <ul>
-                                    <li>🌐 API fundamentals and HTTP protocols</li>
-                                    <li>🔐 Authentication and authorization methods</li>
-                                    <li>📘 OpenAPI specification and API reference docs</li>
-                                    <li>📖 GitBook integration and versioning</li>
-                                    <li>🧰 Testing tools (Postman, cURL)</li>
-                                    <li>⚙️ Advanced concepts (rate limits, pagination, webhooks)</li>
-                                    <li>🤖 AI-assisted documentation</li>
-                                </ul>
+                                <div class="module-overview">
+                                    <div class="module-item">
+                                        <div class="module-header">
+                                            <span class="module-icon">🧭</span>
+                                            <span class="module-title">API Basics & HTTP Fundamentals</span>
+                                        </div>
+                                        <div class="module-lessons">
+                                            <div class="lesson-item">▶ Understanding APIs: The Restaurant Analogy</div>
+                                            <div class="lesson-item">▶ HTTP Methods: The Verbs of the Web</div>
+                                            <div class="lesson-item">▶ HTTP Status Codes: Understanding Server Responses
+                                            </div>
+                                            <div class="lesson-item">▶ REST Architecture & Principles</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-item">
+                                        <div class="module-header">
+                                            <span class="module-icon">🌐</span>
+                                            <span class="module-title">HTTP Protocol Deep Dive</span>
+                                        </div>
+                                        <div class="module-lessons">
+                                            <div class="lesson-item">▶ HTTP Headers Complete Guide</div>
+                                            <div class="lesson-item">▶ HTTP Request/Response Lifecycle</div>
+                                            <div class="lesson-item">▶ HTTP Status Codes: Complete Reference</div>
+                                            <div class="lesson-item">▶ Content Negotiation & Media Types</div>
+                                            <div class="lesson-item">▶ HTTP Methods: Complete Deep Dive</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-item">
+                                        <div class="module-header">
+                                            <span class="module-icon">🔐</span>
+                                            <span class="module-title">Authentication & Security</span>
+                                        </div>
+                                        <div class="module-lessons">
+                                            <div class="lesson-item">▶ Authentication vs Authorization</div>
+                                            <div class="lesson-item">▶ API Keys & Bearer Tokens</div>
+                                            <div class="lesson-item">▶ OAuth 2.0 Authentication Flows</div>
+                                            <div class="lesson-item">▶ API Security Best Practices</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-item">
+                                        <div class="module-header">
+                                            <span class="module-icon">📘</span>
+                                            <span class="module-title">OpenAPI Specification</span>
+                                        </div>
+                                        <div class="module-lessons">
+                                            <div class="lesson-item">▶ Introduction to OpenAPI Specification</div>
+                                            <div class="lesson-item">▶ OpenAPI Schemas & Data Types</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-item">
+                                        <div class="module-header">
+                                            <span class="module-icon">🗂️</span>
+                                            <span class="module-title">API Design Patterns</span>
+                                        </div>
+                                        <div class="module-lessons">
+                                            <div class="lesson-item">▶ Documenting API Endpoints</div>
+                                            <div class="lesson-item">▶ Pagination Strategies</div>
+                                            <div class="lesson-item">▶ Filtering & Sorting</div>
+                                            <div class="lesson-item">▶ API Versioning & Deprecation</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-item">
+                                        <div class="module-header">
+                                            <span class="module-icon">🧰</span>
+                                            <span class="module-title">Documentation Craft</span>
+                                        </div>
+                                        <div class="module-lessons">
+                                            <div class="lesson-item">▶ API Testing with Postman & cURL</div>
+                                            <div class="lesson-item">▶ Writing Clear API Documentation</div>
+                                            <div class="lesson-item">▶ Code Examples Best Practices</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-item">
+                                        <div class="module-header">
+                                            <span class="module-icon">⚙️</span>
+                                            <span class="module-title">Advanced API Concepts</span>
+                                        </div>
+                                        <div class="module-lessons">
+                                            <div class="lesson-item">▶ Rate Limiting & Pagination</div>
+                                            <div class="lesson-item">▶ Webhooks & Event-Driven APIs</div>
+                                            <div class="lesson-item">▶ Caching Strategies & HTTP Caching</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="card">
@@ -165,8 +246,10 @@
                             </div>
 
                             <div class="cta-section">
-                                <p><strong>Ready to start?</strong> Select a lesson from the sidebar or click below to begin!</p>
-                                <button class="btn btn-primary btn-large" id="startFirstLesson">Start First Lesson →</button>
+                                <p><strong>Ready to start?</strong> Select a lesson from the sidebar or click below to
+                                    begin!</p>
+                                <button class="btn btn-primary btn-large" id="startFirstLesson">Start First Lesson
+                                    →</button>
                             </div>
                         </div>
                     </div>
@@ -191,12 +274,9 @@
                     <div class="notes-container">
                         <h3>📝 Personal Notes</h3>
                         <p class="notes-help">Jot down your thoughts, questions, or key takeaways from this lesson.</p>
-                        <textarea 
-                            id="notesTextarea" 
-                            class="notes-textarea" 
+                        <textarea id="notesTextarea" class="notes-textarea"
                             placeholder="Your notes will be saved automatically..."
-                            aria-label="Lesson notes"
-                        ></textarea>
+                            aria-label="Lesson notes"></textarea>
                         <div class="notes-actions">
                             <button class="btn btn-secondary" id="saveNotesBtn">💾 Save Notes</button>
                             <span class="save-status" id="saveStatus"></span>
@@ -248,6 +328,7 @@
     <!-- Hidden file input for import -->
     <input type="file" id="hiddenFileInput" accept=".json" style="display: none;" />
 
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
+
 </html>

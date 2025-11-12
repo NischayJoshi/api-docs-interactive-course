@@ -1,6 +1,6 @@
-# 📚 API Documentation Interactive Crash Course — VideoDB Edition
+# 📚 Complete API Documentation Mastery Course
 
-> A fully local, interactive, static learning website that transforms beginners into professional API documentation writers.
+> Transform from absolute beginner to professional API documentation writer through comprehensive hands-on learning.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![No Dependencies](https://img.shields.io/badge/dependencies-none-success)](/)
@@ -17,14 +17,26 @@ This interactive course teaches you how to create world-class API documentation 
 - **REST API Fundamentals** — HTTP methods, status codes, request/response formats
 - **Authentication & Authorization** — API keys, OAuth 2.0, JWT tokens
 - **OpenAPI Specification** — Creating machine-readable API specs
-- **GitBook Integration** — Building beautiful documentation sites
-- **Testing Tools** — Postman, cURL, YAML validation
-- **Advanced Concepts** — Rate limiting, pagination, webhooks
-- **AI-Assisted Documentation** — Leveraging AI to accelerate writing
+- **API Design Patterns** — Endpoints, parameters, error handling
+- **Documentation Craft** — Postman, cURL, YAML validation, testing workflows
+- **Advanced Concepts** — Rate limiting, pagination, webhooks, versioning
 
 ---
 
 ## 🚀 Getting Started
+
+### How to Use
+
+**Option 1: Direct File Open (Chrome/Edge)**
+1. Double-click `index.html` in Windows Explorer
+2. Site opens immediately in your default browser
+
+**Option 2: Local HTTP Server (All Browsers) - RECOMMENDED**
+1. Double-click `start.bat` to run the server
+2. Open http://localhost:8080 in any browser
+3. The server will keep running until you close the command window
+
+> **💡 Tip**: Use Option 2 if you see a loading screen that never disappears with Option 1.
 
 ### Prerequisites
 
@@ -63,9 +75,9 @@ api-docs-interactive-course/
 ├── styles.css              # Dark theme + neon aesthetic CSS
 ├── app.js                  # Modular JavaScript (navigation, quizzes, progress)
 ├── data/
-│   └── course.json         # Structured course content (8 modules)
+│   └── course.json         # Structured course content (7 modules)
 ├── README.md               # This file
-└── API Documentation Training Crash Course.docx  # Reference document
+└── START.bat               # Local server startup script
 ```
 
 ### File Descriptions
@@ -82,8 +94,8 @@ api-docs-interactive-course/
 ## ✨ Features
 
 ### 🎓 Interactive Learning
-- **8 Core Modules** with 15+ lessons covering API documentation fundamentals to advanced topics
-- **Interactive Quizzes** with instant feedback (MCQ and short answer)
+- **7 Core Modules** with 25 lessons covering API documentation fundamentals to advanced topics
+- **Interactive Quizzes** with instant feedback (MCQ format)
 - **Code Examples** in multiple languages (cURL, Python, JavaScript, YAML)
 - **Personal Notes** saved per lesson in localStorage
 - **Progress Tracking** with visual progress bars and completion badges
@@ -124,43 +136,54 @@ api-docs-interactive-course/
 
 ## 📚 Course Structure
 
-### Module 1: API Basics & HTTP Fundamentals
+### Module 1: API Basics & HTTP Fundamentals 🧭
 - Understanding APIs: The Restaurant Analogy
 - HTTP Methods: The Verbs of the Web
 - HTTP Status Codes: Understanding Server Responses
+- Request/Response Headers
+- Content Types and MIME Types
 
-### Module 2: Authentication & Authorization
+### Module 2: HTTP Protocol Deep Dive 🌐
+- HTTP Request Lifecycle
+- Headers Deep Dive
+- Cookies and Sessions
+- HTTPS and SSL/TLS
+- HTTP/2 and Performance
+
+### Module 3: Authentication & Security 🔐
 - Authentication vs Authorization
-- API Keys, OAuth 2.0, JWT
+- API Keys and Basic Auth
+- OAuth 2.0 Flow
+- JWT Tokens
+- Security Best Practices
 
-### Module 3: API Reference & OpenAPI Basics
-- Introduction to OpenAPI Specification
-- Creating API specs in YAML/JSON
+### Module 4: OpenAPI Specification 📘
+- Introduction to OpenAPI
+- Creating API Specifications
+- Documenting Endpoints
+- Request/Response Schemas
+- OpenAPI Tools and Validation
 
-### Module 4: Endpoints, Parameters & Error Handling
-- Documenting API Endpoints
-- Path, Query, and Body Parameters
-- Writing Comprehensive Error Docs
-
-### Module 5: GitBook Integration & Versioning
-- Setting Up GitBook Documentation
-- Organizing Content with SUMMARY.md
-- Publishing and Maintaining Docs
-
-### Module 6: Testing Tools & Workflows
-- API Testing with Postman & cURL
-- YAML Validation
-- Generating Code Snippets
-
-### Module 7: Advanced API Concepts
-- Rate Limiting & Pagination
-- Webhooks
+### Module 5: API Design Patterns 🗂️
+- RESTful Design Principles
+- Resource Modeling
+- CRUD Operations
+- Error Handling Patterns
 - API Versioning Strategies
 
-### Module 8: Using AI & Automation for API Docs
-- AI-Assisted API Documentation
-- Prompt Engineering for Docs
-- Validating AI Output
+### Module 6: Documentation Craft 🧰
+- Postman Collections
+- cURL Command Examples
+- YAML Validation
+- Code Snippet Generation
+- Testing Workflows
+
+### Module 7: Advanced API Concepts ⚙️
+- Rate Limiting Documentation
+- Pagination Patterns
+- Webhooks and Callbacks
+- GraphQL vs REST
+- API Governance
 
 ---
 
@@ -361,7 +384,7 @@ console.log(localStorage.getItem('test')); // Should print "1"
 - [x] Mobile-friendly and responsive
 - [x] Accessible (ARIA, keyboard navigation, focus styles)
 - [x] Dark theme with neon aesthetic
-- [x] 8 modules with comprehensive lessons
+- [x] 7 modules with comprehensive lessons
 - [x] Fully offline (no CDNs or external dependencies)
 
 ---
@@ -386,7 +409,7 @@ console.log(localStorage.getItem('test')); // Should print "1"
 Complete Modules 1, 2, 3, and 5 for core knowledge.
 
 ### 📚 Comprehensive (1-2 weeks)
-Complete all 8 modules in order.
+Complete all 7 modules in order.
 
 ### 🎯 Practical Focus
 Modules 4, 6, and 7 for hands-on documentation skills.
