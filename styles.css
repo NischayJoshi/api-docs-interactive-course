@@ -364,14 +364,97 @@ li { margin-bottom: 0.5rem; }
 .progress-info {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
-.progress-actions {
+.progress-sidebar-header {
     display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
 }
+
+.progress-sidebar-header h3 {
+    margin-bottom: 0;
+}
+
+.progress-menu {
+    position: relative;
+}
+
+.progress-menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    line-height: 1;
+}
+
+.progress-menu-btn:hover {
+    background: var(--bg-card);
+    color: var(--primary);
+}
+
+.progress-menu-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    min-width: 180px;
+    z-index: 1000;
+    display: none;
+}
+
+.progress-menu-dropdown.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.progress-menu-item {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.progress-menu-item:first-child {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.progress-menu-item:last-child {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.progress-menu-item:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary);
+}
+
+.progress-menu-item.progress-menu-danger:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+}
+
+.menu-icon {
+    font-size: 1rem;
+}
+
 
 /* ============================================
    Main Content

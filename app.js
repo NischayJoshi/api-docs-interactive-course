@@ -818,6 +818,31 @@
         document.getElementById('sidebarToggle')?.addEventListener('click', () => {
             document.querySelector('.sidebar').classList.toggle('collapsed');
         });
+        
+        // Progress menu dropdown toggle
+        const progressMenuBtn = document.getElementById('progressMenuBtn');
+        const progressMenuDropdown = document.getElementById('progressMenuDropdown');
+        
+        if (progressMenuBtn && progressMenuDropdown) {
+            progressMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                progressMenuDropdown.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!progressMenuBtn.contains(e.target) && !progressMenuDropdown.contains(e.target)) {
+                    progressMenuDropdown.classList.remove('show');
+                }
+            });
+            
+            // Close dropdown after selecting an option
+            progressMenuDropdown.querySelectorAll('.progress-menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    progressMenuDropdown.classList.remove('show');
+                });
+            });
+        }
     }
 
     function saveNotes() {
