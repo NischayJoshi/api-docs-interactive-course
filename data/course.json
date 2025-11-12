@@ -1,0 +1,718 @@
+{
+  "courseTitle": "API Docs Interactive Crash Course — VideoDB Edition",
+  "description": "A self-paced interactive course to master API documentation writing. Learn to create professional REST + OpenAPI docs like a senior technical writer.",
+  "estimatedHours": 20,
+  "modules": [
+    {
+      "id": "module-api-basics",
+      "title": "API Basics & HTTP Fundamentals",
+      "description": "Learn what APIs are, how HTTP powers them, and why documentation matters.",
+      "icon": "🧭",
+      "lessons": [
+        {
+          "id": "lesson-what-is-api",
+          "slug": "what-is-api",
+          "title": "Understanding APIs: The Restaurant Analogy",
+          "estimated_time_minutes": 20,
+          "learning_objectives": [
+            "Explain what an API is using real-world analogies",
+            "Understand the client-server model",
+            "Recognize why API documentation is critical",
+            "Identify the role of a documentation writer"
+          ],
+          "prerequisites": [],
+          "contentHtml": "<h3>What Is an API?</h3><p>Welcome! Before we write a single word of documentation, we need to deeply understand what we're documenting.</p><p>The most common analogy for an <strong>API (Application Programming Interface)</strong> is a <em>waiter at a restaurant</em>:</p><ul><li><strong>You (the client)</strong> are a customer sitting at a table</li><li><strong>The kitchen (the server)</strong> has all the food (the data)</li><li><strong>The API is the waiter</strong> who takes your request and brings back the response</li></ul><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Think of API documentation as the <em>menu</em>. Without a menu, customers don't know what to order. A bad menu causes confusion; a great menu ensures a smooth experience.</div><h3>The Client-Server Model</h3><p>An API enables communication in a <strong>client-server model</strong>:</p><pre><code>Client  ──request──>  Server\n        <──response──</code></pre><ul><li><strong>Client:</strong> The application requesting data (mobile app, website, script)</li><li><strong>Server:</strong> The system that processes requests and returns data</li><li><strong>API:</strong> The interface that defines how they communicate</li></ul><h3>Why API Documentation Matters</h3><p>API documentation is the bridge between the server's capabilities and the developer's understanding. Poor docs lead to:</p><ul><li>❌ Developer frustration</li><li>❌ Support tickets flooding your team</li><li>❌ Slow adoption of your API</li><li>❌ Integration errors</li></ul><p>Great documentation leads to:</p><ul><li>✅ Fast developer onboarding</li><li>✅ Reduced support burden</li><li>✅ Higher API adoption</li><li>✅ Happy developers = successful product</li></ul><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't assume developers will \"figure it out.\" If it's not documented, it doesn't exist.</div><h3>Your Role as a Documentation Writer</h3><p>You are not just passively listing features—you are actively <em>guiding developers to successful outcomes</em>. Think of yourself as:</p><ul><li>A teacher (educating about the API)</li><li>A guide (showing the best path forward)</li><li>A translator (converting technical specs into clear instructions)</li></ul><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>APIs enable client-server communication</li><li>Documentation is the \"menu\" that guides developers</li><li>Good docs = happy developers = successful API</li><li>Your job: guide, teach, and translate</li></ul></div>",
+          "examples": [
+            {
+              "title": "Real API Request - GET Example",
+              "language": "bash",
+              "code": "# Client sends a request to the server\ncurl -X GET 'https://api.videodb.io/v1/videos/abc123' \\\n  -H 'Authorization: Bearer YOUR_API_KEY'"
+            },
+            {
+              "title": "Server Response - JSON",
+              "language": "json",
+              "code": "{\n  \"id\": \"abc123\",\n  \"title\": \"My First Video\",\n  \"duration\": 120,\n  \"status\": \"ready\"\n}"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "In the restaurant analogy, what does the API represent?",
+              "choices": ["The customer", "The waiter", "The kitchen", "The menu"],
+              "answerIndex": 1,
+              "explanation": "The API is like the waiter—it takes requests from the client (customer) and returns responses from the server (kitchen)."
+            },
+            {
+              "id": "q2",
+              "type": "mcq",
+              "question": "What is the primary role of API documentation?",
+              "choices": [
+                "To replace code comments",
+                "To guide developers in using the API successfully",
+                "To list all internal server functions",
+                "To provide legal disclaimers"
+              ],
+              "answerIndex": 1,
+              "explanation": "API documentation guides developers to successful outcomes by clearly explaining how to use the API."
+            },
+            {
+              "id": "q3",
+              "type": "short",
+              "question": "What happens if an API feature is not documented?",
+              "answerText": "it doesn't exist",
+              "acceptableAnswers": ["it doesn't exist", "developers won't use it", "it is invisible", "developers won't know about it"],
+              "explanation": "If it's not in the docs, developers won't know it exists or how to use it."
+            }
+          ],
+          "resources": [
+            {
+              "type": "article",
+              "title": "What is an API? (MDN Web Docs)",
+              "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction"
+            },
+            {
+              "type": "youtube",
+              "title": "APIs for Beginners",
+              "url": "https://www.youtube.com/watch?v=GZvSYJDk-us"
+            }
+          ]
+        },
+        {
+          "id": "lesson-http-methods",
+          "slug": "http-methods",
+          "title": "HTTP Methods: The Verbs of the Web",
+          "estimated_time_minutes": 25,
+          "learning_objectives": [
+            "Master the 5 core HTTP methods (GET, POST, PUT, PATCH, DELETE)",
+            "Identify idempotent vs. non-idempotent operations",
+            "Understand safe vs. unsafe methods",
+            "Document HTTP methods correctly in API docs"
+          ],
+          "prerequisites": ["lesson-what-is-api"],
+          "contentHtml": "<h3>HTTP Methods: The Core Verbs</h3><p>HTTP methods (also called <em>verbs</em>) define the type of action to perform on a resource. Think of them as the commands you give to the server.</p><h3>The 5 Essential HTTP Methods</h3><h4>1. GET — Retrieve Data</h4><p><strong>Purpose:</strong> Request data from the server without modifying anything.</p><ul><li>✅ Safe: Does not change server state</li><li>✅ Idempotent: Multiple identical requests have the same effect</li><li>📖 <strong>Documentation Example:</strong> \"Retrieves a list of all videos in the collection\"</li></ul><h4>2. POST — Create New Resources</h4><p><strong>Purpose:</strong> Submit data to create a new resource.</p><ul><li>❌ Not safe: Changes server state</li><li>❌ Not idempotent: Each request creates a new resource</li><li>📖 <strong>Documentation Example:</strong> \"Creates a new video upload\"</li></ul><h4>3. PUT — Replace/Update Resources</h4><p><strong>Purpose:</strong> Replace an entire resource with new data.</p><ul><li>❌ Not safe: Changes server state</li><li>✅ Idempotent: Sending the same PUT request multiple times has the same result</li><li>📖 <strong>Documentation Example:</strong> \"Updates the entire video metadata\"</li></ul><h4>4. PATCH — Partial Updates</h4><p><strong>Purpose:</strong> Update only specific fields of a resource.</p><ul><li>❌ Not safe: Changes server state</li><li>✅ Often idempotent (depends on implementation)</li><li>📖 <strong>Documentation Example:</strong> \"Updates the video title and description\"</li></ul><h4>5. DELETE — Remove Resources</h4><p><strong>Purpose:</strong> Delete a resource from the server.</p><ul><li>❌ Not safe: Changes server state</li><li>✅ Idempotent: Deleting the same resource multiple times has the same effect</li><li>📖 <strong>Documentation Example:</strong> \"Permanently deletes a video\"</li></ul><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Always document which HTTP method to use for each endpoint. Developers need to know whether they're creating (POST) or updating (PUT/PATCH).</div><h3>Idempotency: Why It Matters</h3><p>An <strong>idempotent</strong> operation produces the same result no matter how many times you perform it.</p><table style='width:100%; border-collapse: collapse; margin: 1rem 0;'><tr style='background: #f0f0f0;'><th style='padding: 0.5rem; border: 1px solid #ddd;'>Method</th><th style='padding: 0.5rem; border: 1px solid #ddd;'>Idempotent?</th><th style='padding: 0.5rem; border: 1px solid #ddd;'>Why?</th></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>GET</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>✅ Yes</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Reading data doesn't change anything</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>POST</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>❌ No</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Each request creates a new resource</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>PUT</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>✅ Yes</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Replacing the same resource yields the same result</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>PATCH</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>⚠️ Maybe</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Depends on how it's implemented</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>DELETE</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>✅ Yes</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Deleting an already-deleted resource is still \"deleted\"</td></tr></table><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't use GET for operations that modify data (e.g., deleting a record). Use the correct HTTP method for semantic clarity.</div><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>GET = Read, POST = Create, PUT = Replace, PATCH = Update, DELETE = Remove</li><li>Idempotent methods: GET, PUT, DELETE (usually PATCH)</li><li>Always document the correct HTTP method for each endpoint</li></ul></div>",
+          "examples": [
+            {
+              "title": "GET Request - Retrieve a Video",
+              "language": "bash",
+              "code": "curl -X GET 'https://api.videodb.io/v1/videos/abc123' \\\n  -H 'Authorization: Bearer YOUR_API_KEY'"
+            },
+            {
+              "title": "POST Request - Create a New Video",
+              "language": "python",
+              "code": "import requests\n\nurl = 'https://api.videodb.io/v1/videos'\nheaders = {'Authorization': 'Bearer YOUR_API_KEY'}\ndata = {\n    'title': 'My New Video',\n    'url': 'https://example.com/video.mp4'\n}\n\nresponse = requests.post(url, json=data, headers=headers)\nprint(response.json())"
+            },
+            {
+              "title": "PUT Request - Replace Video Metadata",
+              "language": "javascript",
+              "code": "fetch('https://api.videodb.io/v1/videos/abc123', {\n  method: 'PUT',\n  headers: {\n    'Authorization': 'Bearer YOUR_API_KEY',\n    'Content-Type': 'application/json'\n  },\n  body: JSON.stringify({\n    title: 'Updated Title',\n    description: 'Updated Description'\n  })\n})\n.then(res => res.json())\n.then(data => console.log(data));"
+            },
+            {
+              "title": "PATCH Request - Partial Update",
+              "language": "bash",
+              "code": "curl -X PATCH 'https://api.videodb.io/v1/videos/abc123' \\\n  -H 'Authorization: Bearer YOUR_API_KEY' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"title\": \"New Title Only\"}'"
+            },
+            {
+              "title": "DELETE Request - Remove a Video",
+              "language": "bash",
+              "code": "curl -X DELETE 'https://api.videodb.io/v1/videos/abc123' \\\n  -H 'Authorization: Bearer YOUR_API_KEY'"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "Which HTTP method is idempotent?",
+              "choices": ["POST", "PUT", "Both", "Neither"],
+              "answerIndex": 1,
+              "explanation": "PUT is idempotent because replacing the same resource multiple times yields the same result. POST creates a new resource each time, so it's not idempotent."
+            },
+            {
+              "id": "q2",
+              "type": "mcq",
+              "question": "You want to update only the title of a video. Which method is most appropriate?",
+              "choices": ["GET", "POST", "PUT", "PATCH"],
+              "answerIndex": 3,
+              "explanation": "PATCH is used for partial updates. PUT would require sending the entire resource data."
+            },
+            {
+              "id": "q3",
+              "type": "short",
+              "question": "What HTTP status code indicates successful resource creation?",
+              "answerText": "201",
+              "acceptableAnswers": ["201", "201 created"],
+              "explanation": "201 Created indicates that a new resource was successfully created via POST."
+            }
+          ],
+          "resources": [
+            {
+              "type": "article",
+              "title": "HTTP Methods (MDN)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods"
+            },
+            {
+              "type": "article",
+              "title": "REST API Tutorial - HTTP Methods",
+              "url": "https://restfulapi.net/http-methods/"
+            }
+          ]
+        },
+        {
+          "id": "lesson-status-codes",
+          "slug": "http-status-codes",
+          "title": "HTTP Status Codes: Understanding Server Responses",
+          "estimated_time_minutes": 20,
+          "learning_objectives": [
+            "Categorize HTTP status codes by class (2xx, 3xx, 4xx, 5xx)",
+            "Identify the most common status codes",
+            "Document error responses effectively",
+            "Write helpful error messages in API docs"
+          ],
+          "prerequisites": ["lesson-http-methods"],
+          "contentHtml": "<h3>HTTP Status Codes: The Server's Response Language</h3><p>Every HTTP response includes a <strong>status code</strong> that tells the client what happened. Understanding these codes is essential for writing clear error documentation.</p><h3>Status Code Classes</h3><h4>2xx — Success ✅</h4><ul><li><strong>200 OK:</strong> Request succeeded, data returned</li><li><strong>201 Created:</strong> Resource successfully created (POST)</li><li><strong>204 No Content:</strong> Success, but no data to return (DELETE)</li></ul><h4>3xx — Redirection ↩️</h4><ul><li><strong>301 Moved Permanently:</strong> Resource has a new permanent URL</li><li><strong>302 Found:</strong> Temporary redirect</li><li><strong>304 Not Modified:</strong> Cached version is still valid</li></ul><h4>4xx — Client Errors ❌</h4><p>These indicate the client did something wrong.</p><ul><li><strong>400 Bad Request:</strong> Malformed request syntax</li><li><strong>401 Unauthorized:</strong> Missing or invalid authentication</li><li><strong>403 Forbidden:</strong> Authenticated but not authorized</li><li><strong>404 Not Found:</strong> Resource doesn't exist</li><li><strong>422 Unprocessable Entity:</strong> Valid syntax, but semantic errors (e.g., invalid field values)</li><li><strong>429 Too Many Requests:</strong> Rate limit exceeded</li></ul><h4>5xx — Server Errors 🔥</h4><p>These indicate the server failed to fulfill a valid request.</p><ul><li><strong>500 Internal Server Error:</strong> Generic server failure</li><li><strong>502 Bad Gateway:</strong> Invalid response from upstream server</li><li><strong>503 Service Unavailable:</strong> Server temporarily down</li><li><strong>504 Gateway Timeout:</strong> Upstream server didn't respond in time</li></ul><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Always document the expected status codes for each endpoint, including both success and error scenarios.</div><h3>Documenting Error Responses</h3><p>When documenting errors, include:</p><ol><li><strong>Status Code:</strong> e.g., 404</li><li><strong>Error Message:</strong> Human-readable description</li><li><strong>Error Code:</strong> Machine-readable identifier (optional)</li><li><strong>Resolution Steps:</strong> How to fix the issue</li></ol><h4>Example Error Documentation</h4><pre><code>404 Not Found\n\nThe requested video was not found.\n\nResponse:\n{\n  \"error\": {\n    \"code\": \"VIDEO_NOT_FOUND\",\n    \"message\": \"No video exists with ID abc123\",\n    \"suggestion\": \"Verify the video ID and try again.\"\n  }\n}</code></pre><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't just say \"Error occurred.\" Provide actionable error messages that help developers debug issues.</div><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>2xx = Success, 3xx = Redirect, 4xx = Client error, 5xx = Server error</li><li>Always document expected status codes</li><li>Provide clear, actionable error messages</li></ul></div>",
+          "examples": [
+            {
+              "title": "200 OK - Successful Response",
+              "language": "json",
+              "code": "{\n  \"id\": \"abc123\",\n  \"title\": \"My Video\",\n  \"status\": \"ready\"\n}"
+            },
+            {
+              "title": "201 Created - Resource Created",
+              "language": "json",
+              "code": "{\n  \"id\": \"new456\",\n  \"title\": \"New Video\",\n  \"created_at\": \"2024-01-15T10:30:00Z\"\n}"
+            },
+            {
+              "title": "400 Bad Request - Validation Error",
+              "language": "json",
+              "code": "{\n  \"error\": {\n    \"code\": \"VALIDATION_ERROR\",\n    \"message\": \"Invalid request parameters\",\n    \"details\": [\n      {\n        \"field\": \"title\",\n        \"issue\": \"Title is required\"\n      }\n    ]\n  }\n}"
+            },
+            {
+              "title": "401 Unauthorized - Missing Auth",
+              "language": "json",
+              "code": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"Missing or invalid API key\",\n    \"suggestion\": \"Include your API key in the Authorization header\"\n  }\n}"
+            },
+            {
+              "title": "404 Not Found - Resource Missing",
+              "language": "json",
+              "code": "{\n  \"error\": {\n    \"code\": \"NOT_FOUND\",\n    \"message\": \"Video not found\",\n    \"resource_id\": \"abc123\"\n  }\n}"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "Which status code indicates a successful resource creation?",
+              "choices": ["200 OK", "201 Created", "204 No Content", "301 Moved Permanently"],
+              "answerIndex": 1,
+              "explanation": "201 Created is the standard status code for successful POST requests that create new resources."
+            },
+            {
+              "id": "q2",
+              "type": "mcq",
+              "question": "What's the difference between 401 and 403?",
+              "choices": [
+                "No difference, they're interchangeable",
+                "401 = not authenticated, 403 = not authorized",
+                "401 = server error, 403 = client error",
+                "401 = temporary, 403 = permanent"
+              ],
+              "answerIndex": 1,
+              "explanation": "401 Unauthorized means you haven't authenticated (missing/invalid credentials). 403 Forbidden means you're authenticated but don't have permission for this resource."
+            },
+            {
+              "id": "q3",
+              "type": "short",
+              "question": "Which status code class indicates server errors?",
+              "answerText": "5xx",
+              "acceptableAnswers": ["5xx", "500", "5"],
+              "explanation": "5xx status codes (500-599) indicate server-side errors."
+            }
+          ],
+          "resources": [
+            {
+              "type": "article",
+              "title": "HTTP Status Codes (MDN)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"
+            },
+            {
+              "type": "website",
+              "title": "HTTP Status Dogs (Fun Reference)",
+              "url": "https://httpstatusdogs.com/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-authentication",
+      "title": "Authentication & Authorization",
+      "description": "Master API security concepts and learn to document authentication methods.",
+      "icon": "🔐",
+      "lessons": [
+        {
+          "id": "lesson-auth-basics",
+          "slug": "authentication-basics",
+          "title": "Authentication vs Authorization",
+          "estimated_time_minutes": 25,
+          "learning_objectives": [
+            "Differentiate between authentication and authorization",
+            "Understand common authentication methods (API Keys, OAuth, JWT)",
+            "Document authentication requirements clearly",
+            "Write security best practices for API users"
+          ],
+          "prerequisites": ["lesson-http-methods"],
+          "contentHtml": "<h3>Authentication vs Authorization</h3><p>These terms are often confused, but they serve different purposes:</p><h4>Authentication 🔑</h4><p><strong>\"Who are you?\"</strong></p><p>Authentication verifies the identity of the user or application making the request.</p><ul><li>Example: Logging in with username/password</li><li>Example: Providing an API key</li></ul><h4>Authorization 🚪</h4><p><strong>\"What are you allowed to do?\"</strong></p><p>Authorization determines what resources the authenticated user can access.</p><ul><li>Example: A user can view their own videos but can't delete another user's videos</li><li>Example: Admin role has more permissions than regular user role</li></ul><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Think of authentication as showing your ID at the door, and authorization as having the right ticket for the VIP section.</div><h3>Common Authentication Methods</h3><h4>1. API Keys 🔑</h4><p>The simplest form of authentication. The client sends a secret key with each request.</p><p><strong>Pros:</strong></p><ul><li>Simple to implement</li><li>Good for server-to-server communication</li></ul><p><strong>Cons:</strong></p><ul><li>Less secure (key can be stolen)</li><li>No granular permissions</li><li>Difficult to revoke for individual users</li></ul><h4>2. OAuth 2.0 🎫</h4><p>A standard protocol for authorization, commonly used for third-party access.</p><p><strong>Pros:</strong></p><ul><li>Industry standard</li><li>Supports scopes (granular permissions)</li><li>Token-based (can expire and refresh)</li></ul><p><strong>Cons:</strong></p><ul><li>More complex to implement</li><li>Requires understanding of flows (authorization code, client credentials, etc.)</li></ul><h4>3. JWT (JSON Web Tokens) 🎟️</h4><p>Self-contained tokens that include user information and claims.</p><p><strong>Pros:</strong></p><ul><li>Stateless (server doesn't need to store session data)</li><li>Can include custom claims</li><li>Works well with microservices</li></ul><p><strong>Cons:</strong></p><ul><li>Cannot be invalidated before expiry (unless using a blacklist)</li><li>Larger payload than simple tokens</li></ul><h3>Documenting Authentication</h3><p>When documenting authentication, always include:</p><ol><li><strong>Method Used:</strong> API Key, OAuth, JWT, etc.</li><li><strong>How to Obtain:</strong> Where users get their credentials</li><li><strong>Where to Send:</strong> Header name, query parameter, etc.</li><li><strong>Format:</strong> Exact format required (e.g., \"Bearer {token}\")</li><li><strong>Security Best Practices:</strong> Never commit keys to version control, rotate regularly, etc.</li></ol><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Never include real API keys in documentation examples. Use placeholders like \"YOUR_API_KEY\" or \"sk_test_xxxx\".</div><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>Authentication = \"Who are you?\" | Authorization = \"What can you do?\"</li><li>Common methods: API Keys (simple), OAuth (standard), JWT (stateless)</li><li>Document: method, how to obtain, where to send, format, security tips</li></ul></div>",
+          "examples": [
+            {
+              "title": "API Key in Header",
+              "language": "bash",
+              "code": "curl -X GET 'https://api.videodb.io/v1/videos' \\\n  -H 'Authorization: Bearer YOUR_API_KEY'"
+            },
+            {
+              "title": "API Key in Python",
+              "language": "python",
+              "code": "import requests\n\nheaders = {\n    'Authorization': 'Bearer YOUR_API_KEY'\n}\n\nresponse = requests.get(\n    'https://api.videodb.io/v1/videos',\n    headers=headers\n)\n\nprint(response.json())"
+            },
+            {
+              "title": "OAuth 2.0 Access Token",
+              "language": "bash",
+              "code": "# First, obtain an access token\ncurl -X POST 'https://api.videodb.io/oauth/token' \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  -d 'grant_type=client_credentials' \\\n  -d 'client_id=YOUR_CLIENT_ID' \\\n  -d 'client_secret=YOUR_CLIENT_SECRET'\n\n# Then use the token in requests\ncurl -X GET 'https://api.videodb.io/v1/videos' \\\n  -H 'Authorization: Bearer ACCESS_TOKEN'"
+            },
+            {
+              "title": "JWT Token Structure",
+              "language": "text",
+              "code": "Header:  {\"alg\": \"HS256\", \"typ\": \"JWT\"}\nPayload: {\"sub\": \"user123\", \"exp\": 1516239022}\nSignature: HMACSHA256(base64(header) + '.' + base64(payload), secret)"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "What's the difference between authentication and authorization?",
+              "choices": [
+                "They are the same thing",
+                "Authentication verifies identity, authorization determines permissions",
+                "Authentication is for users, authorization is for servers",
+                "Authorization comes before authentication"
+              ],
+              "answerIndex": 1,
+              "explanation": "Authentication verifies WHO you are (identity), while authorization determines WHAT you can do (permissions)."
+            },
+            {
+              "id": "q2",
+              "type": "mcq",
+              "question": "Which authentication method is stateless and self-contained?",
+              "choices": ["API Keys", "OAuth 2.0", "JWT", "Session cookies"],
+              "answerIndex": 2,
+              "explanation": "JWT (JSON Web Tokens) are stateless because they contain all the necessary information and don't require server-side session storage."
+            },
+            {
+              "id": "q3",
+              "type": "short",
+              "question": "Should you include real API keys in documentation examples?",
+              "answerText": "no",
+              "acceptableAnswers": ["no", "never", "false"],
+              "explanation": "Never include real API keys in public documentation. Always use placeholders like 'YOUR_API_KEY'."
+            }
+          ],
+          "resources": [
+            {
+              "type": "article",
+              "title": "OAuth 2.0 Simplified",
+              "url": "https://aaronparecki.com/oauth-2-simplified/"
+            },
+            {
+              "type": "article",
+              "title": "JWT Introduction",
+              "url": "https://jwt.io/introduction"
+            },
+            {
+              "type": "youtube",
+              "title": "OAuth 2.0 and OpenID Connect (in plain English)",
+              "url": "https://www.youtube.com/watch?v=996OiexHze0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-openapi-reference",
+      "title": "API Reference & OpenAPI Basics",
+      "description": "Learn to create API reference documentation and master OpenAPI specification.",
+      "icon": "📘",
+      "lessons": [
+        {
+          "id": "lesson-openapi-intro",
+          "slug": "openapi-introduction",
+          "title": "Introduction to OpenAPI Specification",
+          "estimated_time_minutes": 30,
+          "learning_objectives": [
+            "Understand the purpose and benefits of OpenAPI",
+            "Identify the key components of an OpenAPI document",
+            "Write a basic OpenAPI 3.0 specification",
+            "Use OpenAPI tools for documentation generation"
+          ],
+          "prerequisites": ["lesson-http-methods"],
+          "contentHtml": "<h3>What is OpenAPI?</h3><p><strong>OpenAPI Specification</strong> (formerly Swagger) is a standard, language-agnostic format for describing REST APIs. Think of it as a contract that defines your API's structure.</p><h3>Why Use OpenAPI?</h3><ul><li>✅ <strong>Auto-generate documentation:</strong> Tools like Swagger UI create interactive docs from your spec</li><li>✅ <strong>Generate client SDKs:</strong> Automatically create client libraries in multiple languages</li><li>✅ <strong>API validation:</strong> Ensure requests/responses match the specification</li><li>✅ <strong>Version control:</strong> Track API changes over time</li><li>✅ <strong>Standardization:</strong> Team-wide consistency</li></ul><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Write your OpenAPI spec BEFORE building the API. It serves as a design document and contract.</div><h3>OpenAPI Document Structure</h3><p>An OpenAPI document has three main sections:</p><h4>1. Info Section</h4><p>Metadata about your API:</p><pre><code class='language-yaml'>openapi: 3.0.0\ninfo:\n  title: VideoDB API\n  version: 1.0.0\n  description: API for managing video databases\n  contact:\n    name: API Support\n    email: support@videodb.io</code></pre><h4>2. Servers</h4><p>Define where the API is hosted:</p><pre><code class='language-yaml'>servers:\n  - url: https://api.videodb.io/v1\n    description: Production server\n  - url: https://sandbox.videodb.io/v1\n    description: Sandbox environment</code></pre><h4>3. Paths (Endpoints)</h4><p>The actual API endpoints:</p><pre><code class='language-yaml'>paths:\n  /videos:\n    get:\n      summary: List all videos\n      responses:\n        '200':\n          description: Success</code></pre><h3>Key Components</h3><table style='width:100%; border-collapse: collapse; margin: 1rem 0;'><tr style='background: #f0f0f0;'><th style='padding: 0.5rem; border: 1px solid #ddd;'>Component</th><th style='padding: 0.5rem; border: 1px solid #ddd;'>Purpose</th></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>paths</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Define API endpoints</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>components</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Reusable schemas, parameters, responses</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>security</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Authentication methods</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>tags</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Group related operations</td></tr></table><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't confuse OpenAPI 2.0 (Swagger) with OpenAPI 3.0+. The syntax is different. Use OpenAPI 3.0 or higher for new projects.</div><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>OpenAPI = standardized API description format</li><li>Benefits: auto-docs, client generation, validation</li><li>Structure: info, servers, paths, components</li><li>Write the spec first as a design contract</li></ul></div>",
+          "examples": [
+            {
+              "title": "Complete OpenAPI 3.0 Example",
+              "language": "yaml",
+              "code": "openapi: 3.0.0\ninfo:\n  title: VideoDB API\n  version: 1.0.0\n  description: Manage your video database\n\nservers:\n  - url: https://api.videodb.io/v1\n\npaths:\n  /videos/{videoId}:\n    get:\n      summary: Get a video by ID\n      parameters:\n        - name: videoId\n          in: path\n          required: true\n          schema:\n            type: string\n      responses:\n        '200':\n          description: Success\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/Video'\n        '404':\n          description: Video not found\n\ncomponents:\n  schemas:\n    Video:\n      type: object\n      properties:\n        id:\n          type: string\n        title:\n          type: string\n        duration:\n          type: integer\n          description: Duration in seconds"
+            },
+            {
+              "title": "Security Scheme (API Key)",
+              "language": "yaml",
+              "code": "components:\n  securitySchemes:\n    ApiKeyAuth:\n      type: apiKey\n      in: header\n      name: Authorization\n\nsecurity:\n  - ApiKeyAuth: []"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "What is the current recommended version of OpenAPI for new projects?",
+              "choices": ["Swagger 2.0", "OpenAPI 2.0", "OpenAPI 3.0+", "REST 1.0"],
+              "answerIndex": 2,
+              "explanation": "OpenAPI 3.0 (or higher) is the current standard. OpenAPI 2.0 was previously called Swagger."
+            },
+            {
+              "id": "q2",
+              "type": "short",
+              "question": "What OpenAPI section defines reusable schemas?",
+              "answerText": "components",
+              "acceptableAnswers": ["components", "component"],
+              "explanation": "The 'components' section contains reusable schemas, parameters, responses, and security schemes."
+            }
+          ],
+          "resources": [
+            {
+              "type": "website",
+              "title": "OpenAPI Specification",
+              "url": "https://spec.openapis.org/oas/latest.html"
+            },
+            {
+              "type": "tool",
+              "title": "Swagger Editor (Online)",
+              "url": "https://editor.swagger.io/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-endpoints-params",
+      "title": "Endpoints, Parameters & Error Handling",
+      "description": "Master documenting API endpoints, request parameters, and comprehensive error handling.",
+      "icon": "🗂️",
+      "lessons": [
+        {
+          "id": "lesson-documenting-endpoints",
+          "slug": "documenting-endpoints",
+          "title": "Documenting API Endpoints",
+          "estimated_time_minutes": 30,
+          "learning_objectives": [
+            "Structure endpoint documentation effectively",
+            "Document path, query, and body parameters",
+            "Write clear request and response examples",
+            "Create comprehensive parameter descriptions"
+          ],
+          "prerequisites": ["lesson-openapi-intro"],
+          "contentHtml": "<h3>Anatomy of Endpoint Documentation</h3><p>Every endpoint should include:</p><ol><li>📍 <strong>Endpoint URL</strong> and HTTP method</li><li>📝 <strong>Description</strong> of what it does</li><li>🔑 <strong>Authentication</strong> requirements</li><li>📊 <strong>Parameters</strong> (path, query, body)</li><li>✅ <strong>Success responses</strong> with examples</li><li>❌ <strong>Error responses</strong> with examples</li><li>💻 <strong>Code examples</strong> in multiple languages</li></ol><h3>Types of Parameters</h3><h4>1. Path Parameters</h4><p>Part of the URL path itself (required):</p><pre><code>GET /videos/{videoId}/comments/{commentId}</code></pre><p><strong>Documentation:</strong></p><ul><li><code>videoId</code> (string, required): The unique identifier of the video</li><li><code>commentId</code> (string, required): The unique identifier of the comment</li></ul><h4>2. Query Parameters</h4><p>Appended to the URL after <code>?</code> (usually optional):</p><pre><code>GET /videos?limit=10&sort=created_desc&category=tech</code></pre><p><strong>Documentation:</strong></p><ul><li><code>limit</code> (integer, optional): Number of results to return (default: 20, max: 100)</li><li><code>sort</code> (string, optional): Sort order (options: created_asc, created_desc, title)</li><li><code>category</code> (string, optional): Filter by category</li></ul><h4>3. Body Parameters</h4><p>Sent in the request body (for POST, PUT, PATCH):</p><pre><code class='language-json'>{\n  \"title\": \"My Video\",\n  \"description\": \"A great video\",\n  \"tags\": [\"education\", \"tutorial\"]\n}</code></pre><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Always specify default values, ranges, and constraints for parameters (e.g., \"max length: 255 characters\").</div><h3>Request & Response Examples</h3><p>Provide complete, realistic examples:</p><h4>✅ Good Example</h4><pre><code class='language-bash'>curl -X POST 'https://api.videodb.io/v1/videos' \\\n  -H 'Authorization: Bearer YOUR_API_KEY' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"title\": \"My First Video\",\n    \"url\": \"https://example.com/video.mp4\",\n    \"tags\": [\"tutorial\"]\n  }'</code></pre><h4>❌ Bad Example</h4><pre><code>POST /videos\nSend: title, url\nGet: video object</code></pre><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't just say \"Returns a video object.\" Show the actual JSON structure with example values.</div><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>Document 7 things: URL, description, auth, params, success, errors, examples</li><li>3 parameter types: path (required), query (optional), body (POST/PUT/PATCH)</li><li>Always provide complete, realistic examples</li></ul></div>",
+          "examples": [
+            {
+              "title": "Full Endpoint Documentation Example",
+              "language": "markdown",
+              "code": "## POST /videos\n\nCreate a new video in your collection.\n\n### Authentication\nRequires API key in Authorization header.\n\n### Request Body\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| title | string | Yes | Video title (max 255 chars) |\n| url | string | Yes | URL of the video file |\n| description | string | No | Video description |\n| tags | array[string] | No | Tags for categorization |\n\n### Example Request\n\n```bash\ncurl -X POST 'https://api.videodb.io/v1/videos' \\\n  -H 'Authorization: Bearer sk_test_abc123' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"title\": \"Product Demo\",\n    \"url\": \"https://cdn.example.com/demo.mp4\",\n    \"tags\": [\"demo\", \"product\"]\n  }'\n```\n\n### Success Response (201 Created)\n\n```json\n{\n  \"id\": \"vid_xyz789\",\n  \"title\": \"Product Demo\",\n  \"url\": \"https://cdn.example.com/demo.mp4\",\n  \"status\": \"processing\",\n  \"created_at\": \"2024-01-15T10:30:00Z\",\n  \"tags\": [\"demo\", \"product\"]\n}\n```\n\n### Error Responses\n\n**400 Bad Request** - Invalid input\n```json\n{\n  \"error\": {\n    \"code\": \"VALIDATION_ERROR\",\n    \"message\": \"Title is required\"\n  }\n}\n```\n\n**401 Unauthorized** - Missing/invalid API key"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "Which type of parameter is part of the URL path itself?",
+              "choices": ["Query parameter", "Path parameter", "Body parameter", "Header parameter"],
+              "answerIndex": 1,
+              "explanation": "Path parameters are embedded in the URL path, like /videos/{videoId}."
+            },
+            {
+              "id": "q2",
+              "type": "short",
+              "question": "Should you provide complete, realistic examples in API docs?",
+              "answerText": "yes",
+              "acceptableAnswers": ["yes", "true", "always"],
+              "explanation": "Yes! Complete examples help developers understand exactly how to use the API."
+            }
+          ],
+          "resources": [
+            {
+              "type": "article",
+              "title": "REST API Best Practices",
+              "url": "https://restfulapi.net/resource-naming/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-gitbook",
+      "title": "GitBook Integration & Versioning",
+      "description": "Learn to create beautiful documentation sites with GitBook and manage API versions.",
+      "icon": "📖",
+      "lessons": [
+        {
+          "id": "lesson-gitbook-setup",
+          "slug": "gitbook-setup",
+          "title": "Setting Up GitBook Documentation",
+          "estimated_time_minutes": 25,
+          "learning_objectives": [
+            "Set up a GitBook documentation space",
+            "Organize content with SUMMARY.md",
+            "Integrate OpenAPI specifications",
+            "Publish and maintain documentation"
+          ],
+          "prerequisites": [],
+          "contentHtml": "<h3>What is GitBook?</h3><p><strong>GitBook</strong> is a modern documentation platform that turns Markdown files into beautiful, searchable documentation websites.</p><h3>Key Features</h3><ul><li>📝 Markdown-based authoring</li><li>🔍 Full-text search</li><li>🎨 Beautiful, responsive themes</li><li>🔗 Git integration (sync with GitHub)</li><li>👥 Team collaboration</li><li>📊 Analytics and insights</li></ul><h3>GitBook Structure</h3><p>A typical GitBook project has:</p><pre><code>docs/\n├── README.md          # Homepage\n├── SUMMARY.md         # Table of contents\n├── getting-started/\n│   ├── installation.md\n│   └── quickstart.md\n└── api-reference/\n    ├── authentication.md\n    └── endpoints.md</code></pre><h3>SUMMARY.md - The Navigation File</h3><p>This file defines your documentation structure:</p><pre><code class='language-markdown'># Summary\n\n## Getting Started\n* [Introduction](README.md)\n* [Installation](getting-started/installation.md)\n* [Quick Start](getting-started/quickstart.md)\n\n## API Reference\n* [Authentication](api-reference/authentication.md)\n* [Endpoints](api-reference/endpoints.md)\n  * [Videos](api-reference/videos.md)\n  * [Collections](api-reference/collections.md)\n\n## Guides\n* [Error Handling](guides/errors.md)\n* [Rate Limiting](guides/rate-limits.md)</code></pre><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Use a logical hierarchy: Introduction → Getting Started → API Reference → Advanced Topics → Troubleshooting.</div><h3>Integrating OpenAPI with GitBook</h3><p>GitBook can render interactive API docs from OpenAPI specs:</p><ol><li>Upload your <code>openapi.yaml</code> file</li><li>GitBook automatically generates interactive docs</li><li>Users can try API calls directly in the docs</li></ol><h3>Publishing Your GitBook</h3><ol><li><strong>Connect GitHub:</strong> Link your repository</li><li><strong>Auto-sync:</strong> Changes pushed to GitHub auto-update GitBook</li><li><strong>Custom domain:</strong> Use docs.yourcompany.com</li><li><strong>Version control:</strong> Create separate spaces for different API versions</li></ol><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't create one giant page. Break content into logical, digestible sections.</div><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>GitBook = beautiful docs from Markdown</li><li>SUMMARY.md defines navigation</li><li>Can integrate OpenAPI specs</li><li>Sync with GitHub for version control</li></ul></div>",
+          "examples": [
+            {
+              "title": "SUMMARY.md Example",
+              "language": "markdown",
+              "code": "# Summary\n\n## Overview\n* [Introduction](README.md)\n* [What is VideoDB?](overview/what-is-videodb.md)\n\n## Getting Started\n* [Installation](getting-started/installation.md)\n* [Authentication](getting-started/authentication.md)\n* [Your First Request](getting-started/first-request.md)\n\n## API Reference\n* [Videos](api/videos.md)\n  * [List Videos](api/videos/list.md)\n  * [Create Video](api/videos/create.md)\n  * [Get Video](api/videos/get.md)\n  * [Update Video](api/videos/update.md)\n  * [Delete Video](api/videos/delete.md)\n* [Collections](api/collections.md)\n\n## Advanced\n* [Webhooks](advanced/webhooks.md)\n* [Rate Limiting](advanced/rate-limits.md)\n* [Pagination](advanced/pagination.md)\n\n## Support\n* [FAQ](support/faq.md)\n* [Troubleshooting](support/troubleshooting.md)"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "What file defines the navigation structure in GitBook?",
+              "choices": ["README.md", "SUMMARY.md", "index.md", "navigation.md"],
+              "answerIndex": 1,
+              "explanation": "SUMMARY.md defines the table of contents and navigation structure in GitBook."
+            },
+            {
+              "id": "q2",
+              "type": "short",
+              "question": "Can GitBook automatically sync with GitHub?",
+              "answerText": "yes",
+              "acceptableAnswers": ["yes", "true"],
+              "explanation": "Yes, GitBook can sync with GitHub repositories to automatically update documentation."
+            }
+          ],
+          "resources": [
+            {
+              "type": "website",
+              "title": "GitBook Official Docs",
+              "url": "https://docs.gitbook.com/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-tools-workflows",
+      "title": "Testing Tools & Workflows",
+      "description": "Master Postman, cURL, YAML validation, and API testing workflows.",
+      "icon": "🧰",
+      "lessons": [
+        {
+          "id": "lesson-postman-curl",
+          "slug": "postman-curl-testing",
+          "title": "API Testing with Postman & cURL",
+          "estimated_time_minutes": 30,
+          "learning_objectives": [
+            "Use cURL for command-line API testing",
+            "Create and organize requests in Postman",
+            "Generate code snippets from Postman",
+            "Validate API responses"
+          ],
+          "prerequisites": ["lesson-http-methods"],
+          "contentHtml": "<h3>Why Test Your API?</h3><p>Before documenting an endpoint, you must <strong>test it</strong> to understand:</p><ul><li>What parameters are actually required</li><li>What the real response looks like</li><li>What errors can occur</li><li>Edge cases and validation rules</li></ul><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Never document an API endpoint you haven't tested yourself. You'll miss crucial details.</div><h3>cURL: Command-Line Testing</h3><p><strong>cURL</strong> is a command-line tool for making HTTP requests. It's universal and works everywhere.</p><h4>Basic cURL Commands</h4><pre><code class='language-bash'># GET request\ncurl https://api.videodb.io/v1/videos\n\n# GET with headers\ncurl -H \"Authorization: Bearer TOKEN\" \\\n  https://api.videodb.io/v1/videos\n\n# POST with JSON data\ncurl -X POST https://api.videodb.io/v1/videos \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer TOKEN\" \\\n  -d '{\"title\":\"My Video\"}'\n\n# Pretty-print JSON response (with jq)\ncurl https://api.videodb.io/v1/videos | jq\n\n# Save response to file\ncurl -o response.json https://api.videodb.io/v1/videos</code></pre><h3>Postman: Visual API Testing</h3><p><strong>Postman</strong> is a GUI tool for testing APIs. It's perfect for:</p><ul><li>Organizing requests into collections</li><li>Saving and reusing requests</li><li>Auto-generating code snippets</li><li>Team collaboration</li><li>Automated testing</li></ul><h4>Postman Workflow</h4><ol><li><strong>Create a collection:</strong> Group related requests</li><li><strong>Add requests:</strong> Define method, URL, headers, body</li><li><strong>Set environment variables:</strong> Store API keys, base URLs</li><li><strong>Test:</strong> Run requests and inspect responses</li><li><strong>Generate code:</strong> Export to cURL, Python, JavaScript, etc.</li><li><strong>Share:</strong> Export collection for team members</li></ol><h3>Code Generation from Postman</h3><p>Postman can generate code in 20+ languages:</p><ol><li>Create your request in Postman</li><li>Click \"Code\" button (</>) </li><li>Select language (cURL, Python, JavaScript, etc.)</li><li>Copy & paste into your documentation</li></ol><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't forget to remove real API keys before pasting code into documentation!</div><h3>Best Practices for Testing</h3><ul><li>✅ Test both success and error scenarios</li><li>✅ Try invalid parameters to see error messages</li><li>✅ Test edge cases (empty strings, very long values, special characters)</li><li>✅ Document the exact request that worked</li><li>✅ Save example responses as they appear in reality</li></ul><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>Always test endpoints before documenting</li><li>cURL = command-line, universal</li><li>Postman = GUI, great for organization and code generation</li><li>Test success, errors, and edge cases</li></ul></div>",
+          "examples": [
+            {
+              "title": "cURL GET Request",
+              "language": "bash",
+              "code": "curl -X GET 'https://api.videodb.io/v1/videos/abc123' \\\n  -H 'Authorization: Bearer YOUR_API_KEY' \\\n  -H 'Accept: application/json'"
+            },
+            {
+              "title": "cURL POST Request",
+              "language": "bash",
+              "code": "curl -X POST 'https://api.videodb.io/v1/videos' \\\n  -H 'Authorization: Bearer YOUR_API_KEY' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"title\": \"My New Video\",\n    \"url\": \"https://example.com/video.mp4\"\n  }'"
+            },
+            {
+              "title": "Postman Environment Variables",
+              "language": "json",
+              "code": "{\n  \"name\": \"VideoDB Production\",\n  \"values\": [\n    {\n      \"key\": \"base_url\",\n      \"value\": \"https://api.videodb.io/v1\",\n      \"enabled\": true\n    },\n    {\n      \"key\": \"api_key\",\n      \"value\": \"sk_live_abc123\",\n      \"enabled\": true,\n      \"type\": \"secret\"\n    }\n  ]\n}"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "What is the primary advantage of cURL over GUI tools?",
+              "choices": [
+                "It's faster",
+                "It works in any terminal/script",
+                "It has better error messages",
+                "It's easier to use"
+              ],
+              "answerIndex": 1,
+              "explanation": "cURL is universal and works in any terminal, script, or CI/CD pipeline, making it highly portable."
+            },
+            {
+              "id": "q2",
+              "type": "short",
+              "question": "Should you test API endpoints before documenting them?",
+              "answerText": "yes",
+              "acceptableAnswers": ["yes", "always", "true"],
+              "explanation": "Yes! Testing reveals actual behavior, edge cases, and error messages that must be documented."
+            }
+          ],
+          "resources": [
+            {
+              "type": "tool",
+              "title": "Postman Download",
+              "url": "https://www.postman.com/downloads/"
+            },
+            {
+              "type": "article",
+              "title": "cURL Cheat Sheet",
+              "url": "https://devhints.io/curl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-advanced-concepts",
+      "title": "Advanced API Concepts",
+      "description": "Rate limits, pagination, webhooks, and other advanced API documentation topics.",
+      "icon": "⚙️",
+      "lessons": [
+        {
+          "id": "lesson-rate-limits-pagination",
+          "slug": "rate-limits-pagination",
+          "title": "Rate Limiting & Pagination",
+          "estimated_time_minutes": 25,
+          "learning_objectives": [
+            "Explain rate limiting and why it exists",
+            "Document rate limit headers and errors",
+            "Understand pagination strategies",
+            "Document pagination parameters correctly"
+          ],
+          "prerequisites": ["lesson-http-status-codes"],
+          "contentHtml": "<h3>Rate Limiting: Protecting the API</h3><p><strong>Rate limiting</strong> restricts how many requests a client can make in a time period. It prevents abuse and ensures fair resource allocation.</p><h3>Why Rate Limits Exist</h3><ul><li>🛡️ Prevent API abuse and DDoS attacks</li><li>⚖️ Ensure fair usage across all clients</li><li>💰 Enforce pricing tiers (free vs. paid)</li><li>🔧 Protect server resources</li></ul><h3>Documenting Rate Limits</h3><p>Always document:</p><ol><li><strong>Limits:</strong> How many requests per time period (e.g., 1000 requests/hour)</li><li><strong>Headers:</strong> Response headers that show remaining quota</li><li><strong>Error response:</strong> What happens when limit is exceeded (429 status code)</li><li><strong>Reset time:</strong> When the limit resets</li></ol><h4>Example Rate Limit Headers</h4><pre><code>X-RateLimit-Limit: 1000\nX-RateLimit-Remaining: 487\nX-RateLimit-Reset: 1640000000</code></pre><h4>429 Too Many Requests Response</h4><pre><code class='language-json'>{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"Rate limit exceeded. Try again in 42 seconds.\",\n    \"retry_after\": 42\n  }\n}</code></pre><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Clearly document different rate limits for different endpoints or tiers (free, pro, enterprise).</div><h3>Pagination: Handling Large Data Sets</h3><p><strong>Pagination</strong> breaks large result sets into smaller \"pages\" to improve performance and user experience.</p><h3>Common Pagination Strategies</h3><h4>1. Offset-Based Pagination</h4><p>Uses <code>limit</code> and <code>offset</code> parameters:</p><pre><code>GET /videos?limit=20&offset=40</code></pre><ul><li>✅ Simple to implement</li><li>❌ Performance degrades with large offsets</li><li>❌ Can miss items if data changes between requests</li></ul><h4>2. Cursor-Based Pagination</h4><p>Uses a <code>cursor</code> (pointer) to the next page:</p><pre><code>GET /videos?limit=20&cursor=eyJpZCI6MTIzfQ</code></pre><ul><li>✅ Consistent results even if data changes</li><li>✅ Better performance</li><li>❌ Can't jump to arbitrary pages</li></ul><h4>3. Page-Based Pagination</h4><p>Uses <code>page</code> and <code>per_page</code> parameters:</p><pre><code>GET /videos?page=3&per_page=20</code></pre><ul><li>✅ Intuitive for users</li><li>❌ Same issues as offset-based</li></ul><h3>Pagination Response Format</h3><p>Include metadata in responses:</p><pre><code class='language-json'>{\n  \"data\": [...],\n  \"pagination\": {\n    \"total\": 500,\n    \"page\": 3,\n    \"per_page\": 20,\n    \"total_pages\": 25,\n    \"next_cursor\": \"eyJpZCI6ODd9\",\n    \"has_more\": true\n  }\n}</code></pre><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Don't forget to document the maximum allowed page size (e.g., \"max 100 items per page\").</div><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>Rate limits protect the API from abuse</li><li>Document: limits, headers, error response, reset time</li><li>Pagination strategies: offset, cursor, page-based</li><li>Include pagination metadata in responses</li></ul></div>",
+          "examples": [
+            {
+              "title": "Rate Limit Documentation Example",
+              "language": "markdown",
+              "code": "## Rate Limits\n\nThe VideoDB API enforces rate limits to ensure fair usage:\n\n- **Free tier:** 100 requests/hour\n- **Pro tier:** 1,000 requests/hour\n- **Enterprise:** Custom limits\n\n### Rate Limit Headers\n\nEvery response includes these headers:\n\n```\nX-RateLimit-Limit: 1000\nX-RateLimit-Remaining: 487\nX-RateLimit-Reset: 1640000000\n```\n\n### When You Hit the Limit\n\nStatus: `429 Too Many Requests`\n\n```json\n{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"Rate limit exceeded\",\n    \"retry_after\": 120\n  }\n}\n```"
+            },
+            {
+              "title": "Cursor-Based Pagination Example",
+              "language": "bash",
+              "code": "# First request\ncurl 'https://api.videodb.io/v1/videos?limit=20'\n\n# Response includes next_cursor\n{\n  \"data\": [...],\n  \"next_cursor\": \"eyJpZCI6MjB9\"\n}\n\n# Next request uses the cursor\ncurl 'https://api.videodb.io/v1/videos?limit=20&cursor=eyJpZCI6MjB9'"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "What HTTP status code indicates rate limit exceeded?",
+              "choices": ["400", "403", "429", "500"],
+              "answerIndex": 2,
+              "explanation": "429 Too Many Requests is the standard status code for rate limit errors."
+            },
+            {
+              "id": "q2",
+              "type": "mcq",
+              "question": "Which pagination method is best for consistent results when data changes frequently?",
+              "choices": ["Offset-based", "Cursor-based", "Page-based", "All are equal"],
+              "answerIndex": 1,
+              "explanation": "Cursor-based pagination provides consistent results even when the underlying data changes between requests."
+            }
+          ],
+          "resources": [
+            {
+              "type": "article",
+              "title": "API Rate Limiting Best Practices",
+              "url": "https://cloud.google.com/architecture/rate-limiting-strategies-techniques"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "module-ai-automation",
+      "title": "Using AI & Automation for API Docs",
+      "description": "Leverage AI tools and automation to accelerate documentation writing.",
+      "icon": "🤖",
+      "lessons": [
+        {
+          "id": "lesson-ai-for-docs",
+          "slug": "ai-documentation-tools",
+          "title": "AI-Assisted API Documentation",
+          "estimated_time_minutes": 20,
+          "learning_objectives": [
+            "Identify use cases for AI in documentation",
+            "Use AI to generate initial drafts",
+            "Validate and improve AI-generated content",
+            "Combine AI efficiency with human expertise"
+          ],
+          "prerequisites": [],
+          "contentHtml": "<h3>The Role of AI in Documentation</h3><p>AI tools like ChatGPT, Claude, and GitHub Copilot can <strong>accelerate</strong> documentation writing, but they don't replace human expertise.</p><h3>What AI Can Help With</h3><ul><li>✅ Generate initial drafts from code/specs</li><li>✅ Create code examples in multiple languages</li><li>✅ Suggest descriptions for endpoints</li><li>✅ Generate OpenAPI specs from descriptions</li><li>✅ Proofread and improve clarity</li><li>✅ Translate documentation</li></ul><h3>What AI Cannot Do Well (Yet)</h3><ul><li>❌ Understand your specific use cases</li><li>❌ Know your users' pain points</li><li>❌ Test the API to verify accuracy</li><li>❌ Maintain consistent voice and style</li><li>❌ Make strategic documentation decisions</li></ul><div class='callout callout-tip'><strong>💡 Pro Tip:</strong> Use AI for the first draft, then refine with human expertise. The best docs combine AI speed with human insight.</div><h3>AI Documentation Workflow</h3><ol><li><strong>Input:</strong> Give AI your code, OpenAPI spec, or description</li><li><strong>Generate:</strong> Ask AI to create documentation drafts</li><li><strong>Test:</strong> Verify the API works as AI described</li><li><strong>Refine:</strong> Add context, examples, and user-focused explanations</li><li><strong>Review:</strong> Ensure accuracy and completeness</li></ol><h3>Example AI Prompts</h3><h4>Generate OpenAPI Spec</h4><pre><code>\"Create an OpenAPI 3.0 spec for a REST API endpoint that:\n- Lists all videos in a collection\n- Supports pagination (limit, offset)\n- Requires API key authentication\n- Returns 200 with array of video objects or 401 if unauthorized\"</code></pre><h4>Generate Code Examples</h4><pre><code>\"Convert this cURL request into Python (using requests library) and JavaScript (using fetch):\n\ncurl -X GET 'https://api.videodb.io/v1/videos' \\\n  -H 'Authorization: Bearer API_KEY'\"</code></pre><h4>Improve Clarity</h4><pre><code>\"Make this API description clearer and more user-friendly:\n\n'This endpoint facilitates the retrieval of video resources based on the specified query parameters and authentication credentials provided in the request header.'\"</code></pre><div class='callout callout-warning'><strong>⚠️ Common Pitfall:</strong> Never publish AI-generated documentation without testing and verification. AI can hallucinate endpoints, parameters, or behaviors that don't exist.</div><h3>Tools for AI-Assisted Docs</h3><table style='width:100%; border-collapse: collapse; margin: 1rem 0;'><tr style='background: #f0f0f0;'><th style='padding: 0.5rem; border: 1px solid #ddd;'>Tool</th><th style='padding: 0.5rem; border: 1px solid #ddd;'>Best For</th></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>ChatGPT / Claude</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Drafting, examples, explanations</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>GitHub Copilot</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Inline code examples</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>Mintlify Writer</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Auto-generate from code</td></tr><tr><td style='padding: 0.5rem; border: 1px solid #ddd;'>Scribe</td><td style='padding: 0.5rem; border: 1px solid #ddd;'>Process documentation</td></tr></table><div class='callout callout-recap'><strong>🧠 Quick Recap:</strong><ul><li>AI accelerates documentation but doesn't replace humans</li><li>Use AI for: drafts, examples, translations, proofreading</li><li>Workflow: Generate → Test → Refine → Review</li><li>Always verify AI output against real API behavior</li></ul></div>",
+          "examples": [
+            {
+              "title": "AI Prompt: Generate OpenAPI Spec",
+              "language": "text",
+              "code": "Create an OpenAPI 3.0 specification for a POST endpoint:\n- URL: /v1/videos\n- Creates a new video resource\n- Requires: title (string, required), url (string, required), tags (array, optional)\n- Returns: 201 with created video object\n- Errors: 400 (validation), 401 (auth)\n- Uses Bearer token authentication"
+            },
+            {
+              "title": "AI Prompt: Improve Description",
+              "language": "text",
+              "code": "Make this clearer:\n\n\"The endpoint returns a paginated list of video entities with associated metadata and relational data structures.\"\n\nTarget audience: Junior developers new to APIs."
+            },
+            {
+              "title": "AI-Generated Code Examples",
+              "language": "python",
+              "code": "# AI can quickly generate examples in multiple languages\nimport requests\n\nurl = 'https://api.videodb.io/v1/videos'\nheaders = {'Authorization': 'Bearer YOUR_API_KEY'}\n\nresponse = requests.get(url, headers=headers)\nvideos = response.json()\n\nfor video in videos['data']:\n    print(f\"Video: {video['title']}\")"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "What is the recommended workflow when using AI for documentation?",
+              "choices": [
+                "Generate and publish immediately",
+                "Generate → Test → Refine → Review",
+                "Only use AI for translations",
+                "Avoid AI completely"
+              ],
+              "answerIndex": 1,
+              "explanation": "Always generate with AI, test the output, refine with human expertise, and review for accuracy before publishing."
+            },
+            {
+              "id": "q2",
+              "type": "short",
+              "question": "Should you publish AI-generated docs without testing them?",
+              "answerText": "no",
+              "acceptableAnswers": ["no", "never", "false"],
+              "explanation": "Never! AI can hallucinate features or behaviors. Always test and verify against the real API."
+            }
+          ],
+          "resources": [
+            {
+              "type": "tool",
+              "title": "ChatGPT",
+              "url": "https://chat.openai.com/"
+            },
+            {
+              "type": "tool",
+              "title": "Mintlify",
+              "url": "https://mintlify.com/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
